@@ -7,7 +7,7 @@ const Input = ({ children, className, ...props }: InputProps) => {
     <input
       {...props}
       className={clsx(
-        "px-4 py-2 font-semibold text-sm border-2 rounded-md w-full border-pink-500 focus:border-pink-700",
+        "px-4 py-2 font-semibold text-sm border-2 rounded-md w-full border-[#fc8eac] focus:border-pink-700",
         className
       )}
     >
