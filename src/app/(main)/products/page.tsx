@@ -6,7 +6,6 @@ import SearchInput from "@/modules/search-input";
 import { faArrowLeft, faArrowRight } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useEffect, useRef, useState } from "react";
-import { MoonLoader } from "react-spinners";
 
 const ProductsPage = () => {
   const { state, showResults } = useProducts();
@@ -37,29 +36,23 @@ const ProductsPage = () => {
         />
       </div>
       <div className="flex flex-wrap space-y-3 space-x-4 justify-center mb-9">
-        {state.loading ? (
-          <div className="h-screen">
-            <MoonLoader color="#fc8eac" />
-          </div>
-        ) : (
-          <>
-            {state.products?.length === 0 ? (
-              <div className="h-screen">
-                <p className="text-center text-2xl font-semibold">
-                  No products found
-                </p>
-              </div>
-            ) : (
-              <>
-                {state.products
-                  ?.slice(offset, totalShowLimit)
-                  .map((product: any) => (
-                    <ProductCard {...product} />
-                  ))}
-              </>
-            )}
-          </>
-        )}
+        <>
+          {state.products?.length === 0 ? (
+            <div className="h-screen">
+              <p className="text-center text-2xl font-semibold">
+                No products found
+              </p>
+            </div>
+          ) : (
+            <>
+              {state.products
+                ?.slice(offset, totalShowLimit)
+                .map((product: any) => (
+                  <ProductCard {...product} />
+                ))}
+            </>
+          )}
+        </>
       </div>
       <div className="flex flex-row w-1/12 m-auto space-x-3">
         <Button
