@@ -38,10 +38,7 @@ export default function ProductContextProvider({
 }: {
   children: React.ReactNode;
 }) {
-  const LIMIT = 4;
   const [state, dispatch] = useReducer(productReducer, INITIAL_STATE);
-  const [offset, setOffset] = useState(0);
-  const [limit, setLimit] = useState(LIMIT);
 
   useEffect(() => {
     const paginatedProducts = Products;

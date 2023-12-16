@@ -10,7 +10,9 @@ import { MoonLoader } from "react-spinners";
 
 const ProductsPage = () => {
   const { state, showResults } = useProducts();
-
+  const [offset, setOffset] = useState(0);
+  const LIMIT = 4;
+  const [totalShowLimit, setTotalShowLimit] = useState(LIMIT);
   const [key, setKey] = useState("");
   const inputRef = useRef<HTMLInputElement>(null);
 
@@ -33,7 +35,6 @@ const ProductsPage = () => {
           }}
           onChange={(e) => setKey(e.target.value)}
         />
-       
       </div>
       <div className="flex flex-wrap space-y-3 space-x-4 justify-center mb-9">
         {state.loading ? (
@@ -50,13 +51,38 @@ const ProductsPage = () => {
               </div>
             ) : (
               <>
-                {state.products?.map((product: any) => (
-                  <ProductCard {...product} />
-                ))}
+                {state.products
+                  ?.slice(offset, totalShowLimit)
+                  .map((product: any) => (
+                    <ProductCard {...product} />
+                  ))}
               </>
             )}
           </>
         )}
+      </div>
+      <div className="flex flex-row w-1/12 m-auto space-x-3">
+        <Button
+          variant="secondary"
+          disabled={offset === 0}
+          onClick={() => {
+            setOffset((prev) => prev - LIMIT); // suppose offset was 4, now it will be 0
+            setTotalShowLimit((prev) => prev - LIMIT);
+          }}
+        >
+          <FontAwesomeIcon icon={faArrowLeft} />
+        </Button>
+        <Button
+          variant="secondary"
+          onClick={() => {
+            const newOffset = offset + LIMIT;
+            setOffset(newOffset);
+            setTotalShowLimit(newOffset + LIMIT);
+          }}
+          disabled={offset + LIMIT >= state.products?.length!}
+        >
+          <FontAwesomeIcon icon={faArrowRight} />
+        </Button>
       </div>
     </div>
   );
