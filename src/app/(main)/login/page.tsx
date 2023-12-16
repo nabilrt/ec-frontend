@@ -35,11 +35,11 @@ const Login = () => {
           <small className="font-light text-sm">Login to continue</small>
         </div>
         <form action="" method="post" className="w-2/3 space-y-3 mt-5">
-          <div className="flex flex-row  space-x-2">
+          <div className="flex flex-row  space-x-2 w-[70%]">
             <Input
               placeholder="Email"
               type="text"
-              className="py-4 w-2/3"
+              className="py-4 "
               name="email"
               value={state.email}
               onFocus={() => {
@@ -65,7 +65,7 @@ const Login = () => {
               <p>{errors.email}</p>
             </div>
           )}
-          <div className="flex flex-row  space-x-2">
+          <div className="flex flex-row  space-x-2 w-3/4">
             <Input
               placeholder="Password"
               type={showPassword ? "text" : "password"}
@@ -87,10 +87,10 @@ const Login = () => {
                   },
                 });
               }}
-              className="py-4 w-2/3"
+              className="py-4  "
             />
             <span
-              className="m-auto cursor-pointer"
+              className="m-auto cursor-pointer "
               onClick={() => {
                 setShowPassword(!showPassword);
               }}
@@ -119,7 +119,10 @@ const Login = () => {
         <div className="flex flex-row w-full space-x-2 mt-4">
           <p>
             New User?{" "}
-            <Link href="/sign-up" className="m-auto  hover:underline text-[#fc8eac]">
+            <Link
+              href="/sign-up"
+              className="m-auto  hover:underline text-[#fc8eac]"
+            >
               Register
             </Link>
           </p>

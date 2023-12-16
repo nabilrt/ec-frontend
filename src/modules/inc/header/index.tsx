@@ -1,15 +1,18 @@
-import { faCartShopping } from "@fortawesome/free-solid-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Link from "next/link";
 
 const Header = () => {
   return (
     <div className="flex justify-end space-x-3 p-5 pr-9 shadow-lg items-center">
       <div className="mr-auto font-semibold text-2xl cursor-pointer text-[#fc8eac] ">
-        <Link href="/" className="hover:drop-shadow-xl">EC-Commerce</Link>
+        <Link href="/" className="hover:drop-shadow-xl">
+          EC-Commerce
+        </Link>
       </div>
-      <Link href="/" className="hover:-translate-y-1 hover:uppercase ">
+      <Link href="/about" className="hover:-translate-y-1 hover:uppercase ">
         About
+      </Link>
+      <Link href="/products" className="hover:-translate-y-1 hover:uppercase ">
+        Products
       </Link>
       <Link href="/sign-up" className="hover:-translate-y-1 hover:uppercase ">
         Sign Up
