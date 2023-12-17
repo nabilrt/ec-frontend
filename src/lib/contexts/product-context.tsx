@@ -1,13 +1,5 @@
 "use client";
-import {
-  Dispatch,
-  SetStateAction,
-  createContext,
-  useContext,
-  useEffect,
-  useReducer,
-  useState,
-} from "react";
+import { createContext, useContext, useEffect, useReducer } from "react";
 import Products from "../data/products";
 import { INITIAL_STATE, productReducer } from "../reducers/product-reducer";
 
@@ -17,6 +9,14 @@ type ProductDataProps = {
   price: number;
   description: string;
   image: string;
+  variant_title: string;
+  variants: VariantProps[];
+};
+
+type VariantProps = {
+  id: number;
+  name: string;
+  price: number;
 };
 
 type StateProps = {
@@ -29,6 +29,7 @@ type StateProps = {
 type ProductContextProps = {
   state: StateProps;
   showResults: (key: string) => void;
+  getProductById: (id: number) => any;
 };
 
 const ProductContext = createContext<ProductContextProps | null>(null);
@@ -53,11 +54,18 @@ export default function ProductContextProvider({
     }
   };
 
+  const getProductById = (id: number) => {
+    const product = Products.find((product) => product.id === id);
+
+    return product;
+  };
+
   return (
     <ProductContext.Provider
       value={{
         state: state,
         showResults,
+        getProductById,
       }}
     >
       {children}
