@@ -46,6 +46,8 @@ const ProductDetails = () => {
       id: product?.id,
       name: product?.name,
       quantity: quantity,
+      image: product?.image,
+      variant_title: product?.variant_title,
       variant: product?.variants.find((variant) => variant.id === isSelected),
     };
     addToCart(cartItem);
@@ -67,7 +69,12 @@ const ProductDetails = () => {
             voluptas nesciunt perferendis!
           </p>
           <p className="text-2xl text-[#fc8eac] font-semibold">
-            ${product?.price.toFixed(2)}
+            $
+            {!isSelected
+              ? `${product?.price.toFixed(2)}`
+              : `${product?.variants
+                  .find((variant) => variant.id === isSelected)
+                  ?.price.toFixed(2)}`}
           </p>
           <div className="flex flex-row space-x-2">
             <p className="mt-1 font-semibold uppercase">

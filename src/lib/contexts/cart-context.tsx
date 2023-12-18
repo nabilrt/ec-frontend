@@ -1,10 +1,11 @@
-"use client"
-import { createContext, useContext, useState } from "react";
+"use client";
+import { createContext, useContext, useReducer, useState } from "react";
+import toast from "react-hot-toast";
 
 type CartContextProps = {
   addToCart: (cartItem: any) => void;
-  removeFromCart: (id: number) => void;
-  updateQuantity: (id: number, quantity: number) => void;
+  removeFromCart: (id: string) => void;
+  updateQuantity: (id: string, quantity: number) => void;
   clearCart: () => void;
   cartItems: any;
 };
@@ -34,13 +35,21 @@ export default function CartContextProvider({
       newCart[index].quantity += cartItem.quantity;
 
       setCartItem(newCart);
+      toast.success("Added to Cart!", {
+        duration: 2000,
+        style: {
+          borderRadius: "10px",
+          background: "#333",
+          color: "#fff",
+        },
+      });
     } else {
       newCart.push(cartItem);
 
       setCartItem(newCart);
     }
   };
-  const removeFromCart = (id: number) => {
+  const removeFromCart = (id: string) => {
     const newCart = [...cartItems];
 
     const index = newCart.findIndex((item) => item.cart_item_id === id);
@@ -48,8 +57,18 @@ export default function CartContextProvider({
     newCart.splice(index, 1);
 
     setCartItem(newCart);
+    toast.success("Item Removed From Cart!", {
+      duration: 2000,
+
+      // Styling
+      style: {
+        borderRadius: "10px",
+        background: "#333",
+        color: "#fff",
+      },
+    });
   };
-  const updateQuantity = (id: number, quantity: number) => {
+  const updateQuantity = (id: string, quantity: number) => {
     const newCart = [...cartItems];
 
     const index = newCart.findIndex((item) => item.cart_item_id === id);
@@ -57,9 +76,28 @@ export default function CartContextProvider({
     newCart[index].quantity = quantity;
 
     setCartItem(newCart);
+
+    toast.success("Cart Updated!", {
+      duration: 2000,
+      style: {
+        borderRadius: "10px",
+        background: "#333",
+        color: "#fff",
+      },
+    });
   };
   const clearCart = () => {
     setCartItem([]);
+    toast.success("Emptyed the Cart!", {
+      duration: 2000,
+
+      // Styling
+      style: {
+        borderRadius: "10px",
+        background: "#333",
+        color: "#fff",
+      },
+    });
   };
 
   return (

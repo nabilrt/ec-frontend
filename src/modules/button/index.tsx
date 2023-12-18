@@ -2,7 +2,7 @@ import clsx from "clsx";
 
 type ButtonProps = {
   isLoading?: boolean;
-  variant?: "primary" | "secondary" | "danger";
+  variant?: "primary" | "secondary" | "danger" | "warning" | "success";
 } & React.ButtonHTMLAttributes<HTMLButtonElement>;
 
 const Button = ({
@@ -22,6 +22,8 @@ const Button = ({
           "text-white bg-emerald-400 hover:bg-emerald-600":
             variant === "secondary",
           "text-white bg-red-600 hover:bg-red-800": variant === "danger",
+          "text-white bg-yellow-500 hover:bg-yellow-700": variant === "warning",
+          "text-white bg-blue-500 hover:bg-blue-700": variant === "success",
         },
         className
       )}

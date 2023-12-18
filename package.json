@@ -18,7 +18,9 @@
     "react-awesome-slider": "^4.1.0",
     "react-dom": "^18",
     "react-grid-carousel": "^1.0.1",
+    "react-hot-toast": "^2.4.1",
     "react-spinners": "^0.13.8",
+    "react-to-pdf": "^1.0.1",
     "uuid": "^9.0.1"
   },
   "devDependencies": {

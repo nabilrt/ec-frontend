@@ -23,7 +23,7 @@ const Header = () => {
       <Link href="/login" className="hover:-translate-y-1 hover:uppercase ">
         Login
       </Link>
-      <Link href="#" className="hover:-translate-y-1 hover:uppercase ">
+      <Link href="/cart" className="hover:-translate-y-1 hover:uppercase ">
         <svg
           xmlns="http://www.w3.org/2000/svg"
           height="25"
